@@ -1,0 +1,41 @@
+﻿@{
+	ViewData["Title"] = "Homework2";
+}
+
+<h1>Homework2</h1>
+
+<form>
+	<div class="form-group mb-3">
+		<label>姓名: </label> <br />
+		<input id="name1" value="">
+		<div id="div1" class="alert alert-warning" style="display:none"></div>
+	</div>
+	<div class="form-group mb-3">
+		<label>EMail: </label> <br />
+		<input id="email" value="">
+	</div>
+	<div class="form-group mb-3">
+		<label>年紀: </label> <br />
+		<input id="age" value="">
+	</div>
+	<button class="btn btn-success">送出</button>
+</form>
+
+@section Scripts{
+	<script>
+		const theDiv = document.querySelector('#div1');
+		const name1 = document.querySelector('#name1');
+
+		name1.addEventListener('input', async () => {
+			var inputValue = event.target.value;
+			//theDiv.innerHTML = `${inputValue}`;
+
+			const url = `@Url.Content("~/api/CheckAccountAction")?name=${inputValue}`;
+			const response = await fetch(url);
+			const datas = await response.text();
+
+			theDiv.style.display = "block";
+			theDiv.innerHTML = `${datas}`;
+		})
+	</script>
+}

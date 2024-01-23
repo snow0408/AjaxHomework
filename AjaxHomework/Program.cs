@@ -1,3 +1,6 @@
+using AjaxHomework.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace AjaxHomework
 {
 	public class Program
@@ -9,7 +12,15 @@ namespace AjaxHomework
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
-			var app = builder.Build();
+            builder.Services.AddDbContext<MyDbContext>(
+
+options => options.UseSqlServer(
+
+builder.Configuration.GetConnectionString("MyDBConnection")
+
+));
+
+            var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())

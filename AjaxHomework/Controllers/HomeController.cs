@@ -18,7 +18,12 @@ namespace AjaxHomework.Controllers
 			return View();
 		}
 
-		public IActionResult Privacy()
+        public IActionResult Homework2()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
 		{
 			return View();
 		}
